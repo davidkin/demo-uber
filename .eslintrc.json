@@ -12,10 +12,13 @@
         "project": ["tsconfig.json"]
     },
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
+        "semi": "off",
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/indent": "warn",
+        "indent": "off",
+        "array-callback-return": "off",
+        "no-compare-neg-zero": "off",
+        "no-useless-escape": "off",
         "linebreak-style": [
             "error",
             "unix"
@@ -23,10 +26,6 @@
         "quotes": [
             "error",
             "single"
-        ],
-        "semi": [
-            "error",
-            "always"
         ]
     }
 }
