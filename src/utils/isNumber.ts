@@ -1,1 +1,1 @@
-export const isNumber = (n: any): any => !isNaN(parseFloat(n)) && isFinite(n);
+export const isNumber = (n: any): boolean => !isNaN(parseFloat(n)) && isFinite(n);
