@@ -6,6 +6,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const logger_1 = __importDefault(require("./logger"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : '8080';
@@ -18,7 +19,15 @@ app.use((req, res, next) => {
     next();
 });
 app.get('/', (req, res) => {
-    res.send('Express and TypeScript Server');
+    res.status(200).json({ message: 'Express and TypeScript Server' });
+});
+app.use('/ping', (req, res, next) => {
+    try {
+        res.status(200).json({ message: 'Project created!' });
+    }
+    catch (err) {
+        next(err);
+    }
 });
 // Error-handling
 app.use((err, req, res, next) => {
@@ -26,14 +35,14 @@ app.use((err, req, res, next) => {
     return res.status(status !== null && status !== void 0 ? status : 500).json({ error: message });
 });
 const server = app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    logger_1.default.info(`️[server]: Server is running at http://localhost:${port}`);
 });
 // Graceful Shutdown. Signal to kill all process and to cause program termination
 process.on('SIGTERM', () => {
-    console.info('SIGTERM signal received.');
-    console.log('Closing http server...');
+    logger_1.default.info('SIGTERM signal received.');
+    logger_1.default.info('Closing http server...');
     server.close(() => {
-        console.log('Http server closed.');
+        logger_1.default.info('Http server closed.');
         process.exit(0); // Kill all EventLoop processes. Argument 0 means exit with a "success" code. The "failure" code is 1
     });
 });

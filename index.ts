@@ -1,5 +1,6 @@
-import express, { type Express, type Request, type Response } from 'express';
+import express, { type Express, type Request, type Response, type NextFunction } from 'express';
 import dotenv from 'dotenv';
+import logger from './logger';
 
 dotenv.config();
 
@@ -17,27 +18,34 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express and TypeScript Server');
+  res.status(200).json({ message: 'Express and TypeScript Server' });
 });
 
+app.use('/ping', (req: Request, res: Response, next: NextFunction) => {
+  try {
+    res.status(200).json({ message: 'Project created!' });
+  } catch (err) {
+    next(err);
+  }
+})
+
 // Error-handling
-app.use((err: { message: string, status: string }, req: any, res: any, next: any) => {
+app.use((err: { message: string, status: number }, req: Request, res: Response, next: NextFunction) => {
   const { message, status } = err;
   return res.status(status ?? 500).json({ error: message });
 });
 
 const server = app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+  logger.info(`️[server]: Server is running at http://localhost:${port}`);
 });
 
 // Graceful Shutdown. Signal to kill all process and to cause program termination
 process.on('SIGTERM', () => {
-  console.info('SIGTERM signal received.');
-
-  console.log('Closing http server...');
+  logger.info('SIGTERM signal received.');
+  logger.info('Closing http server...');
 
   server.close(() => {
-    console.log('Http server closed.');
+    logger.info('Http server closed.');
     process.exit(0); // Kill all EventLoop processes. Argument 0 means exit with a "success" code. The "failure" code is 1
   });
 });
