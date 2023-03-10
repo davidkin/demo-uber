@@ -1,6 +1,9 @@
 import express, { type Express, type Request, type Response, type NextFunction } from 'express';
 import dotenv from 'dotenv';
 import logger from './logger';
+import httpLog from './middleware/http-middleware';
+import defaultRoutes from './routes'
+import cors from './middleware/cors-middleware';
 
 dotenv.config();
 
@@ -10,24 +13,10 @@ const port = process.env.PORT ?? '8080';
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-  next();
-});
+app.use(cors);
+app.use(httpLog);
 
-app.get('/', (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Express and TypeScript Server' });
-});
-
-app.use('/ping', (req: Request, res: Response, next: NextFunction) => {
-  try {
-    res.status(200).json({ message: 'Project created!' });
-  } catch (err) {
-    next(err);
-  }
-})
+app.use('/', defaultRoutes);
 
 // Error-handling
 app.use((err: { message: string, status: number }, req: Request, res: Response, next: NextFunction) => {

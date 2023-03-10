@@ -7,30 +7,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const logger_1 = __importDefault(require("./logger"));
-const http_middleware_1 = __importDefault(require("./src/middleware/http-middleware"));
+const http_middleware_1 = __importDefault(require("./middleware/http-middleware"));
+const routes_1 = __importDefault(require("./routes"));
+const cors_middleware_1 = __importDefault(require("./middleware/cors-middleware"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : '8080';
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    next();
-});
+app.use(cors_middleware_1.default);
 app.use(http_middleware_1.default);
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Express and TypeScript Server' });
-});
-app.use('/ping', (req, res, next) => {
-    try {
-        res.status(200).json({ message: 'Pong!' });
-    }
-    catch (err) {
-        next(err);
-    }
-});
+app.use('/', routes_1.default);
 // Error-handling
 app.use((err, req, res, next) => {
     const { message, status } = err;
