@@ -1,11 +1,8 @@
 import express, { type Express, type Request, type Response, type NextFunction } from 'express';
-import dotenv from 'dotenv';
 import logger from './logger';
 import httpLog from './middleware/http-middleware';
 import defaultRoutes from './routes'
 import cors from './middleware/cors-middleware';
-
-dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT ?? '8080';
@@ -19,9 +16,13 @@ app.use(httpLog);
 app.use('/', defaultRoutes);
 
 // Error-handling
-app.use((err: { message: string, status: number }, req: Request, res: Response, next: NextFunction) => {
+app.use((err: { message: string; status: number; }, req: Request, res: Response, next: NextFunction) => {
   const { message, status } = err;
   return res.status(status ?? 500).json({ error: message });
+});
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  return res.status(404).send('Can\'t find the route')
 });
 
 const server = app.listen(port, () => {
@@ -29,6 +30,7 @@ const server = app.listen(port, () => {
 });
 
 // Graceful Shutdown. Signal to kill all process and to cause program termination
+// SIGINT add
 process.on('SIGTERM', () => {
   logger.info('SIGTERM signal received.');
   logger.info('Closing http server...');
