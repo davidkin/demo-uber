@@ -16,6 +16,7 @@
         "@typescript-eslint/semi": "off",
         "@typescript-eslint/indent": "warn",
         "@typescript-eslint/restrict-template-expression": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
         "indent": "off",
         "restrict-template-expression": "off",
         "array-callback-return": "off",
