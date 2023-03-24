@@ -2,20 +2,9 @@ import dotenv from 'dotenv';
 import configSchema from './validation/config';
 import { type ValidationResult } from 'joi';
 import * as fs from 'fs';
+import { type AppConfig } from './config.interface';
 
 dotenv.config();
-
-interface AppConfig {
-  name: string;
-  port: string;
-  version: string;
-  database?: {
-    host: string;
-    username: string;
-    password: string;
-    name: string;
-  };
-}
 
 const readConfig = (): AppConfig => {
   const data = fs.readFileSync('./config.json');

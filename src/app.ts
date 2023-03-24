@@ -2,11 +2,30 @@ import express, { type Express, type Request, type Response, type NextFunction }
 import httpLog from './middleware/http-middleware';
 import defaultRoutes from './routes'
 import cors from './middleware/cors-middleware';
+import requestContext from './asyncStore';
+import config from './config/config';
 
 const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => { requestContext.initStore({ config }, next); })
+
+// TODO: discuss this moment
+// const asyncHook = createHook({
+//   init (asyncId, type, triggerAsyncId, resource) {
+//     const store = requestContext.getStore();
+//     const appContext = store ? { ...store } : { config };
+//
+//     requestContext.initStore(appContext)
+//   },
+//   destroy (asyncId) {
+//     requestContext.disableStore();
+//   }
+// });
+//
+// asyncHook.enable();
 
 app.use(cors);
 app.use(httpLog);
