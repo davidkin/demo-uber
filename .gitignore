@@ -3,6 +3,7 @@
 
 logs
 dist
+data
 
 # dependencies
 node_modules

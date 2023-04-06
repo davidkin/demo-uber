@@ -5,7 +5,7 @@ const configSchema = Joi.object({
   version: Joi.string().required(),
   port: Joi.number().required(),
   database: Joi.object({
-    host: Joi.string().required(),
+    port: Joi.number().required(),
     username: Joi.string().required(),
     password: Joi.string().required(),
     name: Joi.string().required()

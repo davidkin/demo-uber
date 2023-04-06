@@ -1,14 +1,22 @@
 import dotenv from 'dotenv';
 import configSchema from './validation/config';
 import { type ValidationResult } from 'joi';
-import * as fs from 'fs';
 import { type AppConfig } from './config.interface';
 
 dotenv.config();
 
 const readConfig = (): AppConfig => {
-  const data = fs.readFileSync('./config.json');
-  const config = JSON.parse(data.toString()) as AppConfig;
+  const config: AppConfig = {
+    name: 'demo-uber',
+    port: 9000,
+    version: '1.0.0',
+    database: {
+      name: process.env.DB_NAME ?? 'mydatabase',
+      username: process.env.DB_USER ?? 'postgres',
+      password: process.env.DB_PSW ?? '',
+      port: 5433
+    }
+  };
 
   const { error }: ValidationResult = configSchema.validate(config);
 
