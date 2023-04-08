@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "postgres",
+    "username": "david",
     "password": "Powermetal322",
     "database": "mydatabase",
     "host": "localhost",
@@ -8,14 +8,14 @@
     "port": "5433"
   },
   "test": {
-    "username": "postgres",
+    "username": "david",
     "password": "Powermetal322",
     "database": "mydatabase",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
+    "username": "david",
     "password": "Powermetal322",
     "database": "mydatabase",
     "host": "127.0.0.1",

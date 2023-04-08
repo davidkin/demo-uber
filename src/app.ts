@@ -1,6 +1,7 @@
 import express, { type Express, type Request, type Response, type NextFunction } from 'express';
 import httpLog from './middleware/http-middleware';
-import defaultRoutes from './routes'
+import defaultRoutes from './routes';
+import userRoutes from './routes/user';
 import cors from './middleware/cors-middleware';
 import { RequestContextStorage } from './store/asyncStore';
 import config from './config/config';
@@ -19,6 +20,7 @@ app.use(cors);
 app.use(httpLog);
 
 app.use('/', defaultRoutes);
+app.use('/user', userRoutes)
 
 // Error-handling
 app.use((err: { message: string; status: number; }, req: Request, res: Response, next: NextFunction) => {
