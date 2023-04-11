@@ -6,8 +6,8 @@ class UserService {
     return await UserRepo.getUserByEmail(email);
   }
 
-  static async createUser (user: IUser): Promise<IUserInstance> {
-    return await UserRepo.createUser(user);
+  static async createUser (user: IUser): Promise<[IUserInstance, boolean]> {
+    return await UserRepo.findOrCreate(user);
   }
 }
 

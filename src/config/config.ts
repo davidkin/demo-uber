@@ -15,7 +15,9 @@ const readConfig = (): AppConfig => {
       username: process.env.DB_USER ?? 'postgres',
       password: process.env.DB_PSW ?? '',
       port: 5433
-    }
+    },
+    token: process.env.TOKEN_SECRET ?? '',
+    refreshToken: process.env.TOKEN_REFRESH_SECRET ?? ''
   };
 
   const { error }: ValidationResult = configSchema.validate(config);

@@ -8,4 +8,6 @@ export interface AppConfig {
     name: string;
     port: number;
   };
+  token: string;
+  refreshToken: string;
 }

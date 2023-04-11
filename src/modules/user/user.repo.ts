@@ -6,8 +6,13 @@ class UserRepo {
     return await UserModel.findOne({ where: { email } });
   }
 
-  static async createUser (user: IUser): Promise<IUserInstance> {
-    return await UserModel.create(user)
+  static async findOrCreate (user: IUser): Promise<[IUserInstance, boolean]> {
+    const [newUser, isCreated] = await UserModel.findOrCreate({
+      where: { email: user.email },
+      defaults: user
+    });
+
+    return [newUser, isCreated];
   }
 }
 

@@ -21,6 +21,7 @@
         "@typescript-eslint/ban-ts-commen": "off",
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-confusing-void-expression": "off",
         "indent": "off",
         "restrict-template-expression": "off",
         "array-callback-return": "off",
