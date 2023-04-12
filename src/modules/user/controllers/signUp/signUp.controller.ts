@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import EncryptionService from '../../../../services/EncryptionService';
 import { type IUser, type IUserInstance } from '../../type';
-import UserService from '../../user.service';
+import { UserService } from '../../index';
 import AuthorizedError from '../../../../errors/AuthorizedError';
 
 const signUp = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

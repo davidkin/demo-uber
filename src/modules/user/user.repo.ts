@@ -1,4 +1,4 @@
-import UserModel from './user.model';
+import { UserModel } from './index';
 import { type IUser, type IUserInstance } from './type';
 
 class UserRepo {

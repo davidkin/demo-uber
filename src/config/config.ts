@@ -23,7 +23,8 @@ const readConfig = (): AppConfig => {
   const { error }: ValidationResult = configSchema.validate(config);
 
   if (error) {
-    throw new Error(`Config validation error: ${error.message}`);
+    console.error(error);
+    throw new Error('Config validation error');
   }
 
   return config;

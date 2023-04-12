@@ -1,4 +1,4 @@
-import UserRepo from './user.repo';
+import { UserRepo } from './index';
 import { type IUser, type IUserInstance } from './type';
 
 class UserService {

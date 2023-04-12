@@ -2,7 +2,7 @@ import express from 'express';
 import { type NextFunction, type Request, type Response } from 'express';
 import logger from '../logger';
 import userRoutes from './user/user.routes';
-import tokenRoutes from './token/token.routes';
+import sessionRoutes from './session/session.routes';
 
 const routes = express.Router();
 
@@ -12,6 +12,6 @@ routes.get('/ping', (req: Request, res: Response, next: NextFunction): any => {
 });
 
 routes.use('/api/user', userRoutes)
-routes.use('/api/token', tokenRoutes)
+routes.use('/api/session', sessionRoutes)
 
 export default routes;

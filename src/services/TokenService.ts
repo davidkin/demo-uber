@@ -1,6 +1,6 @@
-import jwt, { type JwtPayload } from 'jsonwebtoken';
-import { type IUser } from '../user/type';
-import config from '../../config/config';
+import jwt from 'jsonwebtoken';
+import { type IUser } from '../modules/user/type';
+import config from '../config/config';
 
 class TokenService {
   static createToken (user: IUser): string {

@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import { NotAuthorizedError } from '../../../../errors';
 import { type IUser } from '../../../user/type';
-import { TokenService } from '../../index';
+import TokenService from '../../../../services/TokenService';
 import config from '../../../../config/config';
 import UserService from '../../../user/user.service';
 
@@ -21,8 +21,9 @@ const refreshToken = async (req: Request, res: Response, next: NextFunction): Pr
     }
 
     const accessToken = TokenService.createToken(user);
+    const newRefreshToken = TokenService.refreshToken(user);
 
-    res.status(200).json({ message: 'Login was success', accessToken });
+    res.status(200).json({ message: 'Login was success', accessToken, refreshToken: newRefreshToken });
   } catch (err) {
     next(err);
   }
