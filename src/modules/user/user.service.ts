@@ -2,6 +2,7 @@ import { UserRepo } from './index';
 import { type IUser, type IUserInstance } from './type';
 import EncryptionService from '../../services/EncryptionService';
 import { NotAuthorizedError } from '../../errors';
+import AuthorizedError from '../../errors/AuthorizedError';
 
 class UserService {
   static async getUserByPasswordAndEmail (email: string, password: string): Promise<IUserInstance | null> {
@@ -15,8 +16,19 @@ class UserService {
     return user;
   }
 
-  static async createUser (user: IUser): Promise<[IUserInstance, boolean]> {
-    return await UserRepo.findOrCreate(user);
+  static async createUser (user: IUser): Promise<Omit<IUser, 'password'>> {
+    const [newUser, hasJustCreated]: [IUserInstance, boolean] = await UserRepo.findOrCreate(user);
+
+    if (!hasJustCreated) {
+      throw new AuthorizedError('User already exist');
+    }
+
+    return {
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      role: newUser.role,
+      email: newUser.email
+    };
   }
 }
 
