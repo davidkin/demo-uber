@@ -17,7 +17,9 @@ class UserService {
   }
 
   static async createUser (user: IUser): Promise<Omit<IUser, 'password'>> {
-    const [newUser, hasJustCreated]: [IUserInstance, boolean] = await UserRepo.findOrCreate(user);
+    const hashedPw = await EncryptionService.encryptPassword(user.password);
+
+    const [newUser, hasJustCreated]: [IUserInstance, boolean] = await UserRepo.findOrCreate({ ...user, password: hashedPw });
 
     if (!hasJustCreated) {
       throw new AuthorizedError('User already exist');
