@@ -14,6 +14,7 @@ module.exports = {
         }]);
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.bulkDelete('Users', null, {});
+        const Op = Sequelize.Op;
+        return queryInterface.bulkDelete('Users', { [Op.eq]: { email: 'example@example.com' } }, {});
     }
 };

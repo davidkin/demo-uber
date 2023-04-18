@@ -18,7 +18,7 @@ app.use((req, res, next) => { requestContext.initStore(new ContextService(config
 app.use(cors);
 app.use(httpLog);
 
-app.use('/', appRoutes);
+app.use(appRoutes);
 
 // Error-handling
 app.use((err: { message: string; status: number; }, req: Request, res: Response, next: NextFunction) => {

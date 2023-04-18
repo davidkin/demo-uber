@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     Sessions.init({
         sid: DataTypes.STRING,
         userId: DataTypes.STRING,
-        expires: DataTypes.DATE,
-        data: DataTypes.STRING
+        expires: DataTypes.DATE
     }, {
         sequelize,
         modelName: 'Sessions'

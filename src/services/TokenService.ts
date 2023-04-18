@@ -13,11 +13,11 @@ class TokenService {
         email: user.email
       },
       config.token,
-      { expiresIn: '3h' }
+      { expiresIn: config.tokenExpires }
     );
   }
 
-  static refreshToken (user: IUser): string {
+  static createRefreshToken (user: IUser): string {
     return jwt.sign({
       id: user.id,
       firstName: user.firstName,
@@ -26,7 +26,7 @@ class TokenService {
       email: user.email
     },
     config.refreshToken,
-    { expiresIn: '5h' })
+    { expiresIn: config.refreshTokenExpires })
   }
 
   static verifyToken (token: string, secret: string, verifyCallback?: (err: any, decode: any) => void): any {

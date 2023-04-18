@@ -1,9 +1,8 @@
 import * as Joi from 'joi';
 
 const configSchema = Joi.object({
-  name: Joi.string().required(),
   version: Joi.string().required(),
-  port: Joi.number().required(),
+  port: Joi.string().required(),
   database: Joi.object({
     port: Joi.number().required(),
     username: Joi.string().required(),
@@ -11,7 +10,9 @@ const configSchema = Joi.object({
     name: Joi.string().required()
   }),
   token: Joi.string().required(),
-  refreshToken: Joi.string().required()
+  refreshToken: Joi.string().required(),
+  tokenExpires: Joi.string().required(),
+  refreshTokenExpires: Joi.string().required()
 });
 
 export default configSchema;

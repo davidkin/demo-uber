@@ -17,7 +17,8 @@ module.exports = {
             },
             email: {
                 type: Sequelize.STRING,
-                allowNull: false
+                allowNull: false,
+                name: 'email_index'
             },
             role: {
                 type: Sequelize.ARRAY(Sequelize.STRING),

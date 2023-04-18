@@ -6,12 +6,12 @@ import sessionRoutes from './session/session.routes';
 
 const routes = express.Router();
 
-routes.get('/ping', (req: Request, res: Response, next: NextFunction): any => {
+routes.get('/api/v1/ping', (req: Request, res: Response, next: NextFunction): any => {
   logger.info('Ping Check Request');
   res.status(200).json({ message: 'Pong!' });
 });
 
-routes.use('/api/user', userRoutes)
-routes.use('/api/session', sessionRoutes)
+routes.use('/api/v1/user', userRoutes)
+routes.use('/api/v1/session', sessionRoutes)
 
 export default routes;

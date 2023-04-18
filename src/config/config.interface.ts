@@ -1,6 +1,5 @@
 export interface AppConfig {
-  name: string;
-  port: number;
+  port: string;
   version: string;
   database: {
     username: string;
@@ -10,4 +9,6 @@ export interface AppConfig {
   };
   token: string;
   refreshToken: string;
+  tokenExpires: string;
+  refreshTokenExpires: string;
 }
