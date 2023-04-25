@@ -20,10 +20,6 @@ module.exports = {
                 allowNull: false,
                 name: 'email_index'
             },
-            role: {
-                type: Sequelize.ARRAY(Sequelize.STRING),
-                allowNull: false
-            },
             status: {
                 type: Sequelize.ARRAY(Sequelize.STRING),
                 allowNull: false

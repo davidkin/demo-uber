@@ -7,8 +7,7 @@ module.exports = {
             firstName: 'John',
             lastName: 'Doe',
             email: 'example@example.com',
-            role: ['admin'],
-            status: ['driver'],
+            status: ['admin'],
             password: '12345',
             createdAt: new Date(),
             updatedAt: new Date()

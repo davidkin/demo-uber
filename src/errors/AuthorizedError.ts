@@ -1,4 +1,4 @@
-class NotAuthorizedError extends Error {
+export class NotAuthorizedError extends Error {
   status: number;
 
   constructor (message: string) {
@@ -6,5 +6,3 @@ class NotAuthorizedError extends Error {
     this.status = 401;
   }
 }
-
-export default NotAuthorizedError;

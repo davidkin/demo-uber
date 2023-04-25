@@ -1,9 +1,16 @@
 import { type Request, type Response } from 'express';
-import { NotAuthorizedError } from '../../../../errors';
+import { NotAuthorizedError, ValidationError } from '../../../../errors';
 import { TokenService } from '../../../../services/TokenService';
 import config from '../../../../config/config';
+import { refreshTokenValidation } from './refreshToken.validation';
 
 export const refreshToken = async (req: Request, res: Response): Promise<void> => {
+  const { error, message } = refreshTokenValidation(req.body);
+
+  if (error) {
+    throw new ValidationError(message);
+  }
+
   const { refreshToken } = req.body;
 
   if (!refreshToken) {

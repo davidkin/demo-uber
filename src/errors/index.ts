@@ -1,2 +1,2 @@
-export { default as NotAuthorizedError } from './AuthorizedError';
-export { default as ValidationError } from './ValidationError';
+export { NotAuthorizedError } from './AuthorizedError';
+export { ValidationError } from './ValidationError';

@@ -9,7 +9,7 @@ export class TokenService {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
-        role: user.role,
+        status: user.status,
         email: user.email
       },
       config.token,
@@ -22,7 +22,7 @@ export class TokenService {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.role,
+      status: user.status,
       email: user.email
     },
     config.refreshToken,

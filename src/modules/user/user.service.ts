@@ -28,7 +28,6 @@ class UserService {
     return {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      role: newUser.role,
       email: newUser.email,
       status: newUser.status
     };

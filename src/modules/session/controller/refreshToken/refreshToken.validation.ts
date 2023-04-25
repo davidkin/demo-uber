@@ -2,10 +2,10 @@ import * as Joi from 'joi';
 import { type Request } from 'express';
 import { type IValidationError } from '../../../../types';
 
-export const logoutValidation = (req: Request): IValidationError => {
+export const refreshTokenValidation = (req: Request): IValidationError => {
   const schema = Joi.object({
     body: Joi.object({
-      sessionId: Joi.number()
+      refreshToken: Joi.string().required()
     }).required()
   }).unknown(true);
 
