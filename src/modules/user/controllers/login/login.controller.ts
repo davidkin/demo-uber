@@ -1,10 +1,10 @@
-import { type NextFunction, type Request, type Response } from 'express';
+import { type Request, type Response } from 'express';
 import { UserService } from '../../index';
-import TokenService from '../../../../services/TokenService';
+import { TokenService } from '../../../../services/TokenService';
 import { NotAuthorizedError } from '../../../../errors';
 import { SessionService } from '../../../session';
 
-const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   const user = await UserService.getUserByPasswordAndEmail(email, password);
@@ -25,5 +25,3 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<v
 
   res.status(200).json({ message: 'Login was success', token, refreshToken, sessionId: session.sid });
 }
-
-export { login }

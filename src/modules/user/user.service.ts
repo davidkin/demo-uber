@@ -1,6 +1,6 @@
-import { UserRepo } from './index';
+import { UserRepo } from './user.repo';
 import { type IUser, type IUserInstance } from './type';
-import EncryptionService from '../../services/EncryptionService';
+import { EncryptionService } from '../../services/EncryptionService';
 import { NotAuthorizedError } from '../../errors';
 import AuthorizedError from '../../errors/AuthorizedError';
 
@@ -29,7 +29,8 @@ class UserService {
       firstName: newUser.firstName,
       lastName: newUser.lastName,
       role: newUser.role,
-      email: newUser.email
+      email: newUser.email,
+      status: newUser.status
     };
   }
 }

@@ -1,8 +1,10 @@
-import express from 'express';
-import { SessionControllers } from './index';
+import express, { type Router } from 'express';
+import * as SessionControllers from './controller';
 
-const routes = express.Router();
+export const initRoutes = (globalRouter: Router): void => {
+  const routes = express.Router();
 
-routes.post('/refreshToken', SessionControllers.refreshToken);
+  routes.post('/refreshToken', SessionControllers.refreshToken);
 
-export default routes;
+  globalRouter.use('/session', routes);
+}

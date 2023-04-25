@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { type IUser } from '../modules/user/type';
 import config from '../config/config';
 
-class TokenService {
+export class TokenService {
   static createToken (user: IUser): string {
     return jwt.sign(
       {
@@ -34,5 +34,3 @@ class TokenService {
     return jwt.verify(token, tokenSecret, verifyCallback);
   }
 }
-
-export default TokenService;

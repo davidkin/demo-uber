@@ -1,7 +1,7 @@
 import app from './app';
 import config from './config/config';
 import logger from './logger';
-import { database } from './database';
+// import { database } from './database';
 
 const EXIT_SIGNALS = ['SIGINT', 'SIGTERM'];
 
@@ -9,13 +9,14 @@ const server = app.listen(config.port, () => {
   logger.info(`️[server]: Server is running at http://localhost:${config.port}`);
 });
 
-database.sync()
-  .then(() => {
-    console.log('Synced db.');
-  })
-  .catch((err: { message: string; }) => {
-    console.log('Failed to sync db: ' + err.message);
-  });
+// TODO: remove and move check logic to health-check
+// database.sync()
+//   .then(() => {
+//     console.log('Synced db.');
+//   })
+//   .catch((err: { message: string; }) => {
+//     console.log('Failed to sync db: ' + err.message);
+//   });
 
 // Graceful Shutdown. Signal to kill all process and to cause program termination
 EXIT_SIGNALS.forEach(signal => process.on(signal, () => {

@@ -1,9 +1,9 @@
-import { type NextFunction, type Request, type Response } from 'express';
+import { type Request, type Response } from 'express';
 import { NotAuthorizedError } from '../../../../errors';
-import TokenService from '../../../../services/TokenService';
+import { TokenService } from '../../../../services/TokenService';
 import config from '../../../../config/config';
 
-const refreshToken = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const refreshToken = async (req: Request, res: Response): Promise<void> => {
   const { refreshToken } = req.body;
 
   if (!refreshToken) {
@@ -17,4 +17,3 @@ const refreshToken = async (req: Request, res: Response, next: NextFunction): Pr
 
   res.status(200).json({ message: 'Login was success', accessToken, refreshToken: newRefreshToken });
 }
-export { refreshToken }

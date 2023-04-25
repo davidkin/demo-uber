@@ -1,6 +1,6 @@
 import { SessionModel } from './index';
 
-class SessionRepo {
+export class SessionRepo {
   static async createSession (sessionInfo: any): Promise<any> {
     return await SessionModel.create(sessionInfo);
   }
@@ -9,5 +9,3 @@ class SessionRepo {
     return await SessionModel.destroy({ where: { sid: sessionId } });
   }
 }
-
-export default SessionRepo;

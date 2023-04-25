@@ -1,7 +1,7 @@
 import { UserModel } from './index';
 import { type IUser, type IUserInstance } from './type';
 
-class UserRepo {
+export class UserRepo {
   static async getUserByPasswordAndEmail (email: string, password: string): Promise<IUserInstance | null> {
     return await UserModel.findOne({ where: { email, password } });
   }
@@ -15,5 +15,3 @@ class UserRepo {
     return [newUser, isCreated];
   }
 }
-
-export default UserRepo;

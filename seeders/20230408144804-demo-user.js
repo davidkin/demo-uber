@@ -8,6 +8,7 @@ module.exports = {
             lastName: 'Doe',
             email: 'example@example.com',
             role: ['admin'],
+            status: ['driver'],
             password: '12345',
             createdAt: new Date(),
             updatedAt: new Date()

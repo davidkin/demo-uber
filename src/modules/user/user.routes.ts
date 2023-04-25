@@ -1,10 +1,12 @@
 import express from 'express';
-import { UserController } from './index';
+import * as UserControllers from './controllers';
 
-const routes = express.Router();
+export const initRoutes = (globalRouter: express.Router): void => {
+  const routes = express.Router();
 
-routes.post('/login', UserController.login);
-routes.post('/signUp', UserController.signUp);
-routes.post('/logout', UserController.logout);
+  routes.post('/login', UserControllers.login);
+  routes.post('/signUp', UserControllers.signUp);
+  routes.post('/logout', UserControllers.logout);
 
-export default routes;
+  globalRouter.use('/user', routes);
+};

@@ -1,4 +1,4 @@
-import { SessionRepo } from './index';
+import { SessionRepo } from './session.repo';
 import { v4 as uuidv4 } from 'uuid';
 
 class SessionService {

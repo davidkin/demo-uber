@@ -11,6 +11,10 @@ const UserModel = database.define<IUserInstance>('User', {
   },
   role: {
     type: DataTypes.ARRAY(DataTypes.STRING),
+    defaultValue: ['driver']
+  },
+  status: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
     defaultValue: ['admin']
   },
   email: {

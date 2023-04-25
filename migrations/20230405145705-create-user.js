@@ -24,6 +24,10 @@ module.exports = {
                 type: Sequelize.ARRAY(Sequelize.STRING),
                 allowNull: false
             },
+            status: {
+                type: Sequelize.ARRAY(Sequelize.STRING),
+                allowNull: false
+            },
             password: {
                 type: Sequelize.STRING,
                 allowNull: false

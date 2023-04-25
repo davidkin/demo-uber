@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcryptjs';
 
-class EncryptionService {
+export class EncryptionService {
   static async encryptPassword (password: string): Promise<string> {
     return await hash(password, 12);
   }
@@ -9,5 +9,3 @@ class EncryptionService {
     return await compare(password, comparePassword);
   }
 }
-
-export default EncryptionService

@@ -1,8 +1,8 @@
-import { type NextFunction, type Request, type Response } from 'express';
+import { type Request, type Response } from 'express';
 import { ValidationError } from '../../../../errors';
 import { SessionService } from '../../../session';
 
-const logout = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const logout = async (req: Request, res: Response): Promise<void> => {
   const { sessionId } = req.body;
 
   if (!sessionId) {
