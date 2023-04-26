@@ -7,8 +7,7 @@ const SessionModel = database.define('Session', {
     primaryKey: true
   },
   userId: DataTypes.STRING,
-  expires: DataTypes.DATE,
-  data: DataTypes.STRING
+  expires: DataTypes.DATE
 })
 
 export default SessionModel;

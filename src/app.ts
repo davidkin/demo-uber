@@ -6,6 +6,7 @@ import { requestContext } from './store';
 import config from './config/config';
 import { ContextService } from './store/contextStore';
 import logger from './logger';
+import './middleware/passport-middleware';
 
 const app: Express = express();
 
@@ -16,7 +17,6 @@ app.use((req, res, next) => { requestContext.initStore(new ContextService(config
 
 app.use(cors);
 app.use(httpLog);
-
 app.use(appRoutes);
 
 // Error-handling

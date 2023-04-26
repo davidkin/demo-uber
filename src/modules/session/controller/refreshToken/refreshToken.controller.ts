@@ -1,5 +1,5 @@
 import { type Request, type Response } from 'express';
-import { NotAuthorizedError, ValidationError } from '../../../../errors';
+import { AuthorizedError, ValidationError } from '../../../../errors';
 import { TokenService } from '../../../../services/TokenService';
 import config from '../../../../config/config';
 import { refreshTokenValidation } from './refreshToken.validation';
@@ -14,7 +14,7 @@ export const refreshToken = async (req: Request, res: Response): Promise<void> =
   const { refreshToken } = req.body;
 
   if (!refreshToken) {
-    throw new NotAuthorizedError('Refresh Token wasn\'t provided');
+    throw new AuthorizedError('Refresh Token wasn\'t provided');
   }
 
   const user = TokenService.verifyToken(refreshToken, config.refreshToken);

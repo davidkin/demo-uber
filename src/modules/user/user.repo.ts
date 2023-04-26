@@ -2,8 +2,8 @@ import { UserModel } from './index';
 import { type IUser, type IUserInstance } from './type';
 
 export class UserRepo {
-  static async getUserByPasswordAndEmail (email: string, password: string): Promise<IUserInstance | null> {
-    return await UserModel.findOne({ where: { email, password } });
+  static async getUserByEmail (email: string): Promise<IUserInstance | null> {
+    return await UserModel.findOne({ where: { email } });
   }
 
   static async findOrCreate (user: IUser): Promise<[IUserInstance, boolean]> {

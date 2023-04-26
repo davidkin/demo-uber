@@ -1,2 +1,2 @@
-export { NotAuthorizedError } from './AuthorizedError';
+export { AuthorizedError } from './AuthorizedError';
 export { ValidationError } from './ValidationError';

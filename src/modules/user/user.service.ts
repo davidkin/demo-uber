@@ -1,16 +1,15 @@
 import { UserRepo } from './user.repo';
 import { type IUser, type IUserInstance } from './type';
 import { EncryptionService } from '../../services/EncryptionService';
-import { NotAuthorizedError } from '../../errors';
-import AuthorizedError from '../../errors/AuthorizedError';
+import { AuthorizedError } from '../../errors';
 
 class UserService {
   static async getUserByPasswordAndEmail (email: string, password: string): Promise<IUserInstance | null> {
-    const user = await UserRepo.getUserByPasswordAndEmail(email, password) as IUserInstance;
+    const user = await UserRepo.getUserByEmail(email) as IUserInstance;
     const isPasswordEqual = await EncryptionService.comparePassword(password, user.password);
 
     if (!isPasswordEqual) {
-      throw new NotAuthorizedError('Wrong password');
+      throw new AuthorizedError('Wrong password');
     }
 
     return user;

@@ -12,5 +12,5 @@ export const loginValidation = (req: Request): IValidationError => {
 
   const error = schema.validate(req);
 
-  return { error, message: error?.error?.details[0].message ?? '' };
+  return { error: error?.error, message: error?.error?.details[0].message ?? '' };
 }

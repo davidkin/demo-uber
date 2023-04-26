@@ -8,6 +8,6 @@ export interface IContextService {
 }
 
 export interface IValidationError {
-  error: Joi.ValidationResult<any>;
+  error: Joi.ValidationResult['error'];
   message: string;
 }
