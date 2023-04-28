@@ -1,5 +1,9 @@
 .idea
 .env
 
+logs
+dist
+data
+
 # dependencies
 node_modules
