@@ -7,8 +7,6 @@ export class TokenService {
     return jwt.sign(
       {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
         status: user.status,
         email: user.email
       },
@@ -20,8 +18,6 @@ export class TokenService {
   static createRefreshToken (user: IUser): string {
     return jwt.sign({
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
       status: user.status,
       email: user.email
     },
