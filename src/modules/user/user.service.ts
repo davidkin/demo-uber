@@ -25,8 +25,6 @@ class UserService {
     }
 
     return {
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
       email: newUser.email,
       status: newUser.status
     };

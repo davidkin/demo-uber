@@ -11,9 +11,9 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     throw new ValidationError(message);
   }
 
-  const { firstName, lastName, password, email, status }: IUser = req.body;
+  const { password, email, status }: IUser = req.body;
 
-  const user = await UserService.createUser({ firstName, lastName, password, email, status });
+  const user = await UserService.createUser({ password, email, status });
 
   res.status(200).json({ user });
 }
